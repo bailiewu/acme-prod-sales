@@ -1,5 +1,5 @@
 {
-  "name": "react-basic-template",
+  "name": "acme-product-sales",
   "version": "1.0.0",
   "description": "",
   "main": "db.js",
@@ -9,8 +9,11 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
     "express": "^4.16.4",
+    "morgan": "^1.9.1",
+    "pg": "^7.9.0",
     "react": "^16.8.3",
     "react-dom": "^16.8.3",
+    "sequelize": "^5.1.0",
     "webpack": "^4.29.6",
     "webpack-cli": "^3.2.3"
   },
