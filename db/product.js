@@ -5,7 +5,9 @@ const Product = conn.define('product', {
     price: Sequelize.DOUBLE,
     salePrice: Sequelize.DOUBLE,
     onSale: Sequelize.BOOLEAN,
-    discountPercentage: Sequelize.DOUBLE,
+    discountPercentage: {
+        type: Sequelize.TEXT,
+    },
     availability: {
         type: Sequelize.ENUM,
         values: ['instock', 'backordered', 'discontinued'],

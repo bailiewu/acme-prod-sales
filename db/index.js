@@ -1,15 +1,6 @@
 const { conn } = require('./conn')
 const Product = require('./product')
 
-// name: Sequelize.TEXT,
-// price: Sequelize.NUMBER,
-// salePrice: Sequelize.NUMBER,
-// onSale: Sequelize.BOOLEAN,
-// status: {
-//     type: Sequelize.ENUM,
-//     values: ['instock', 'backordered', 'discontinued'],
-// }
-
 const syncAndSeed = () => {
   return conn.sync({ force: true })
     .then(() => {
