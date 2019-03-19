@@ -13,6 +13,7 @@ app.get('/products', (req, res, next) => {
 app.post('/products', (req, res, next) => {
     // console.log('in api post products :', req.body)
     Product.create(req.body)
+        .then(product => res.json(product))
         .catch(next)
 })
 

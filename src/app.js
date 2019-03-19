@@ -16,6 +16,7 @@ export default class App extends Component{
             products: []
         }
         this.deleteProduct = this.deleteProduct.bind(this)
+        this.createProduct = this.createProduct.bind(this)
     }
 
     async componentDidMount() {
@@ -26,6 +27,14 @@ export default class App extends Component{
           console.error(error);
         }
     }
+
+    createProduct(newProduct) {
+        let products = this.state.products;
+        products.push(newProduct);
+        this.setState({ products });
+      }
+    
+
     async deleteProduct(id) {
         // eslint-disable-next-line react/no-access-state-in-setstate
         let products = this.state.products
@@ -44,7 +53,7 @@ export default class App extends Component{
                 <Route exact path ="/" component = {home} />
                 <Route exact path ="/products" render={(props) => <Products {...props} products={products} deleteProduct={this.deleteProduct} />} />
                 <Route exact path ="/products/sales" render={(props) => <Products {...props} products={products.filter( (product) => product.onSale)} deleteProduct={this.deleteProduct} />} />
-                <Route exact path ="/products/create" render={(props) => <CreateProduct {...props} products={products} />} />
+                <Route exact path ="/products/create" render={(props) => <CreateProduct {...props} products={products} createProduct={this.createProduct} />} />
             </HashRouter>
         )
     }

@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import { Link  } from 'react-router-dom'
 
 export default class CreateProduct extends Component {
   constructor() {
@@ -9,7 +8,7 @@ export default class CreateProduct extends Component {
         name: '',
         price: '',
         discountPercentage: '',
-        availability: 'instock'
+        availability: 'instock',
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -19,43 +18,26 @@ export default class CreateProduct extends Component {
     this.setState({
           [obj.target.name]: obj.target.value
     })
-    // console.log('CURRENT STATE :', this.state)
   }
 
 handleSubmit = (evt) => {
+    if (this.state.discountPercentage.length > 0){
+        this.setState({
+            onSale: true,
+        })
+    }
     evt.preventDefault()
     const res = axios.post('/api/products', this.state)
+    .then( (res) => this.props.createProduct(res.data))
+
     this.setState({
         name: '',
         price: '',
         discountPercentage: '',
-        availability: ''
+        availability: 'instock'
     })
-    // //redirect
-    // if (this.state.discountPercentage.length > 0){
-    //     this.props.history.push('/products/sales');
-    // }
-    // else {
-    //     this.props.history.push('/products')
-    // }
-
-    // set next key id and cause rerender props
-    // console.log(this.props.products)
-    console.log('before: ', this.props.products)
-    let nextVal = this.state
-    nextVal.id = this.props.products.length + 1
-    this.props.products.push(nextVal)
-    console.log('after: ', this.props.products)
-
-
     //redirect
-    if (this.state.discountPercentage.length > 0){
-        console.log('discounts')
-        this.props.history.push('/products/sales');
-    }
-    else {
-        this.props.history.push('/products')
-    }
+    this.state.discountPercentage.length > 0 ? this.props.history.push('/products/sales') : this.props.history.push('/products')
 }
 
   render() {
