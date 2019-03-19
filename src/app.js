@@ -43,7 +43,7 @@ export default class App extends Component{
                 <Route render={(props) => <Nav {...props} products={products} />} />
                 <Route exact path ="/" component = {home} />
                 <Route exact path ="/products" render={(props) => <Products {...props} products={products} deleteProduct={this.deleteProduct} />} />
-                <Route exact path ="/products/sales" render={(props) => <Products {...props} products={products.filter( (product) => product.onSale)} />} />
+                <Route exact path ="/products/sales" render={(props) => <Products {...props} products={products.filter( (product) => product.onSale)} deleteProduct={this.deleteProduct} />} />
                 <Route exact path ="/products/create" render={(props) => <CreateProduct {...props} products={products} />} />
             </HashRouter>
         )

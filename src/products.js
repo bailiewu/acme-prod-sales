@@ -12,7 +12,7 @@ export default class Products extends Component{
                 return (
                     <div>
                     <span className="badge badge-success">
-                    {product.salePrice}
+                    {`$${product.salePrice}`}
                     <br />
                     </span>
                     </div >

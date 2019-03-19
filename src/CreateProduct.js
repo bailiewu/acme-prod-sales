@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import { Link  } from 'react-router-dom'
 
 export default class CreateProduct extends Component {
   constructor() {
@@ -22,19 +23,40 @@ export default class CreateProduct extends Component {
   }
 
 handleSubmit = (evt) => {
-      console.log('SENDING THIS :', this.state)
     evt.preventDefault()
-        const res = axios.post('/api/products', this.state)
-        // .then( (res) => {
-        //     console.log('res is: ', res)
-        // })
-      this.setState({
-            name: '',
-            price: '',
-            discountPercentage: '',
-            availability: ''
-      })
-  }
+    const res = axios.post('/api/products', this.state)
+    this.setState({
+        name: '',
+        price: '',
+        discountPercentage: '',
+        availability: ''
+    })
+    // //redirect
+    // if (this.state.discountPercentage.length > 0){
+    //     this.props.history.push('/products/sales');
+    // }
+    // else {
+    //     this.props.history.push('/products')
+    // }
+
+    // set next key id and cause rerender props
+    // console.log(this.props.products)
+    console.log('before: ', this.props.products)
+    let nextVal = this.state
+    nextVal.id = this.props.products.length + 1
+    this.props.products.push(nextVal)
+    console.log('after: ', this.props.products)
+
+
+    //redirect
+    if (this.state.discountPercentage.length > 0){
+        console.log('discounts')
+        this.props.history.push('/products/sales');
+    }
+    else {
+        this.props.history.push('/products')
+    }
+}
 
   render() {
     // const { product } = this.state
@@ -67,8 +89,9 @@ handleSubmit = (evt) => {
                 </select>
                 <div />
         </div>
-
-        <button className="btn btn-primary" style={ {marginTop: '10px'} } type="submit" disabled={!this.state.name || !this.state.price || !this.state.availability} >Submit</button>
+        <button className="btn btn-primary" style={ {marginTop: '10px'} } type="submit" disabled={!this.state.name || !this.state.price || !this.state.availability} >
+        Submit
+        </button>
         </form>
     )
   }

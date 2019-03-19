@@ -14,9 +14,12 @@ const Product = conn.define('product', {
     }
 }, {
     hooks: {
-        beforeCreate: ( (product) => {
+        beforeValidate: ( (product) => {
+        // beforeCreate: ( (product) => {
+
             if (product.discountPercentage) {
                 product.salePrice = product.price * (100 - product.discountPercentage) / 100
+                product.onSale = true
             }
             if (!product.onSale) {
                 product.onSale = false
