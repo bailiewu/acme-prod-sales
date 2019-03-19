@@ -28,4 +28,12 @@ app.delete('/products/:productId', (req, res, next) => {
       .catch(next)
   })
 
+//update. nevermind theres no update.
+// app.put('products/:todoId', (req, res, next) => {
+//   Product.findById(req.params.todoId)
+//     .then(product => product.update(req.body))
+//     .then(product => res.json(product))
+//     .catch(next)
+// })
+
 module.exports = app
