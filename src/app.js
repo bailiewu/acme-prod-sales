@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios'
 import { HashRouter, Route } from 'react-router-dom';
-import Products from './Products'
+import Products from './products'
 import Nav from './nav'
 import CreateProduct from './CreateProduct'
 
